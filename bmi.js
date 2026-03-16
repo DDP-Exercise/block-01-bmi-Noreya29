@@ -34,28 +34,22 @@ let bmr, bmi, normal, danger;
 //Name gets asked
 let lastname = window.prompt("What is your last name?");
 let firstname = window.prompt("What is your first name?");
-console.log("Your last name is " + lastname + ".");
-console.log("Your first name is " + firstname + ".");
 
 //Age gets asked
 let age = window.prompt("How old are you in years?")
-console.log("Your age is " + age + " years.");
 
 //Height gets asked
 let heightcm = window.prompt("How tall are you in cm?")
-console.log("Your height is " + heightcm + "cm.");
-let meters = heightcm / 100;
+let meters = Math.floor(heightcm / 100);
 let centimeters = heightcm % 100;
 
 //Weight gets asked
 let weight = window.prompt("What is your weight?");
-console.log("Your weight is " + weight + "kg.");
 
 //Gender gets asked
 let gender = "";
 do {
     gender = prompt("Are you female or male?")
-    console.log("Your gender is " + gender + ".");
 }while (gender.toLowerCase() != "female" && gender.toLowerCase() != "male");
 
 /**
@@ -72,18 +66,15 @@ do {
  **/
 
 bmr = gender == "female" ? 655 + 10 * weight +2 * heightcm - 6 * age : 66 + 14 * weight + 5 * heightcm - 7 * age;
-console.log("That is your BMR: " + bmr + "kcal.");
 
 //BMI berechnen
 bmi = (10000 * weight)/heightcm**2;
 
 //Normal Weight
 normal = bmi >= 18 && bmi <= 25;
-console.log("Your weight is normal.")
 
 //Dangerous weight
 danger = bmi < 16 || bmi >= 30;
-console.log("Your weight is in a dangerous range.");
 
 
 /*
@@ -117,7 +108,7 @@ console.log(LINE); // Logs the dashed-line.
 console.log("Name:                  " + lastname.toUpperCase() +", " + firstname);
 console.log(LINE);
 console.log("Age:                   " + age + " Years");
-console.log("Height:                " + meters + ", " + centimeters + "m");
+console.log("Height:                " + meters + "," + centimeters + "m");
 console.log("Weight:                " + weight + " kg");
 console.log("Basal Metabolic Rate:  " + bmr + " kcal");
 console.log("Body Mass Index:       " + bmi);
