@@ -20,16 +20,37 @@
  *     To do so, collect data from your users. Values within :colons: are (formatted) user-inputs;
  *     values within <angle brackets> have to be calculated by your software.
  *
- *     You - 2026-03-05
+ *     Noreya Friesacher - 2026-03-16
  *******************************************************/
 
 /*
- * TODO: Declare and assign all necessary constants and variables with user input.
+ * Done: Declare and assign all necessary constants and variables with user input.
  * Make sure, to help your users understand what they need to type in, by using clear prompt-instructions.
  */
 
 const LINE = "-----------------------------------------------------";
 let bmr, bmi, normal, danger;
+
+//Name gets asked
+let lastname = window.prompt("What is your last name?");
+let firstname = window.prompt("What is your first name?");
+
+//Age gets asked
+let age = window.prompt("How old are you in years?")
+
+//Height gets asked
+let heightcm = window.prompt("How tall are you in cm?")
+let meters = Math.floor(heightcm / 100);
+let centimeters = heightcm % 100;
+
+//Weight gets asked
+let weight = window.prompt("What is your weight?");
+
+//Gender gets asked
+let gender = "";
+do {
+    gender = prompt("Are you female or male?")
+}while (gender.toLowerCase() != "female" && gender.toLowerCase() != "male");
 
 /**
  * Formulas:
@@ -44,16 +65,28 @@ let bmr, bmi, normal, danger;
  * Danger = Any BMI lower than 16 or 30+.
  **/
 
+bmr = gender == "female" ? 655 + 10 * weight +2 * heightcm - 6 * age : 66 + 14 * weight + 5 * heightcm - 7 * age;
+
+//BMI berechnen
+bmi = (10000 * weight)/heightcm**2;
+
+//Normal Weight
+normal = bmi >= 18 && bmi <= 25;
+
+//Dangerous weight
+danger = bmi < 16 || bmi >= 30;
+
+
 /*
- * TODO: To calculate the bmr; ask your users which calculation method they would prefer (male or female).
+ * Done: To calculate the bmr; ask your users which calculation method they would prefer (male or female).
  * Be careful. Users make typos. Make sure that you have a valid answer before moving on.
  */
 
-// TODO: To calculate the bmi, use the given formula with all the input you have collected.
-// TODO: Once you have the bmi, determine whether or not the weight is normal and if the condition is dangerous.
+// Done: To calculate the bmi, use the given formula with all the input you have collected.
+// Done: Once you have the bmi, determine whether or not the weight is normal and if the condition is dangerous.
 
 /*
- * TODO: Create the correct output from all your data. Make sure to stick to the promised format! NO EXCEPTIONS!
+ * Done: Create the correct output from all your data. Make sure to stick to the promised format! NO EXCEPTIONS!
  * You can use \t to add a Tab-Space. Once your program is completed, the output in the browser console should
  * look EXACTLY like the Example-Output above (with different data, of course).
  *
@@ -72,8 +105,16 @@ let bmr, bmi, normal, danger;
  */
 
 console.log(LINE); // Logs the dashed-line.
-
+console.log("Name:                  " + lastname.toUpperCase() +", " + firstname);
+console.log(LINE);
+console.log("Age:                   " + age + " Years");
+console.log("Height:                " + meters + "," + centimeters + "m");
+console.log("Weight:                " + weight + " kg");
+console.log("Basal Metabolic Rate:  " + bmr + " kcal");
+console.log("Body Mass Index:       " + bmi);
+console.log(normal == true ? "Normal Weight:         " + "Yes" : "Normal Weight:         " + "No");
+console.log(danger == true ? "Danger:                " + "Yes" : "Danger:                " + "No");
 /*
- * TODO: Make sure to TEST YOUR SOFTWARE! Does it work, when People are smaller than 1 meter? Or taller than 2?
+ * Done: Make sure to TEST YOUR SOFTWARE! Does it work, when People are smaller than 1 meter? Or taller than 2?
  * Tip: An 18-Year old Woman, sized 160cm with 60 kg should have a BMR of 1467 kcal and a BMI of 23.4375.
  */
